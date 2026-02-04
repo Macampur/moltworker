@@ -276,7 +276,11 @@ if (isOpenAI) {
     config.agents.defaults.model.primary = 'anthropic/claude-3-5-haiku-20241022-20251101';
 } else {
     // Default to Anthropic without custom base URL (uses built-in pi-ai catalog)
-    config.agents.defaults.model.primary = 'anthropic/claude-3-5-haiku-20241022';
+    config.agents.defaults.models = config.agents.defaults.models || {};
+    config.agents.defaults.models['anthropic/claude-opus-4-5'] = { alias: 'Opus' };
+    config.agents.defaults.models['anthropic/claude-sonnet-4-20250514'] = { alias: 'Sonnet' };
+    config.agents.defaults.models['anthropic/claude-3-5-haiku-20241022'] = { alias: 'Haiku' };
+    config.agents.defaults.model.primary = 'anthropic/claude-sonnet-4-20250514';
 }
 
 // Write updated config
